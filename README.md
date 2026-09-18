@@ -21,8 +21,22 @@ Implemented:
 - ar → العربية / ar
 - ur → اردو / ur
 
+## Phase 4 — LocalStorage Database & Persistence
+
+Implemented:
+- Versioned LocalStorage envelope
+- Dedicated storage keys for settings, questions, subjects, papers, drafts and templates
+- Safe JSON parsing with fallbacks
+- Storage error abstraction
+- Generic typed LocalRepository CRUD layer
+- Zustand application store
+- Demo question seed for all four languages
+- Automatic initial hydration from LocalStorage
+- Dashboard counters now read from persisted data
+- UUID-based entity ID utility
+
 ## Next
-Phase 4 — LocalStorage database + persistence layer, followed by the full Question Bank.
+Phase 5 — Full Question Bank UI and CRUD workflow.
 
 Run:
 

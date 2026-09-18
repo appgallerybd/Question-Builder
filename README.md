@@ -82,8 +82,20 @@ Implemented:
 - Versioned LocalStorage envelope validation hardened
 - Existing multilingual builder and export workflow retained
 
+## Phase 18 — Production Hardening
+
+Implemented:
+- Removed duplicate application imports/state declarations that could break TypeScript compilation
+- Hardened versioned LocalStorage envelope validation
+- Rich DOCX export for sub-questions
+- Rich DOCX export for embedded question images
+- Rich DOCX export for question tables
+- RTL propagation for Arabic/Urdu question and table paragraphs
+- Preserved existing PDF, Print, Saved Papers and multilingual workflows
+- Maintained mobile-friendly touch targets and print CSS foundations
+
 ## Next
-Phase 18 — Final responsive QA, storage recovery UX, rich DOCX fidelity, security checks, and production hardening.
+Phase 19 — Full QA matrix, build/type/lint cleanup, import/export validation, responsive and RTL edge-case hardening.
 
 Run:
 

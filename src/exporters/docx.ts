@@ -19,6 +19,35 @@ function dataUrlBytes(dataUrl: string): Uint8Array {
   return bytes
 }
 
+async function normalizeImage(dataUrl: string): Promise<{ data: Uint8Array; type: 'jpg' | 'png' }> {
+  if (dataUrl.startsWith('data:image/jpeg')) {
+    return { data: dataUrlBytes(dataUrl), type: 'jpg' }
+  }
+
+  if (dataUrl.startsWith('data:image/png')) {
+    return { data: dataUrlBytes(dataUrl), type: 'png' }
+  }
+
+  // docx@9 supports PNG/JPEG but not WebP. Convert unsupported browser
+  // image formats through a canvas before embedding them in the DOCX.
+  const image = new Image()
+  image.src = dataUrl
+  await new Promise<void>((resolve, reject) => {
+    image.onload = () => resolve()
+    image.onerror = () => reject(new Error('Unable to decode image for DOCX export'))
+  })
+
+  const canvas = document.createElement('canvas')
+  canvas.width = image.naturalWidth || image.width
+  canvas.height = image.naturalHeight || image.height
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('Unable to create image canvas for DOCX export')
+  context.drawImage(image, 0, 0)
+
+  const pngDataUrl = canvas.toDataURL('image/png')
+  return { data: dataUrlBytes(pngDataUrl), type: 'png' }
+}
+
 function qParagraph(q: Question, i: number) {
   return new Paragraph({
     children: [
@@ -94,6 +123,7 @@ export async function exportPaperDocx(
 
     if (q.media) {
       for (const media of q.media) {
+        const image = await normalizeImage(media.dataUrl)
         children.push(
           new Paragraph({
             alignment:
@@ -104,13 +134,9 @@ export async function exportPaperDocx(
                   : 'left',
             children: [
               new ImageRun({
-                data: dataUrlBytes(media.dataUrl),
+                data: image.data,
                 transformation: { width: 500, height: 300 },
-                type: media.dataUrl.startsWith('data:image/jpeg')
-                  ? 'jpg'
-                  : media.dataUrl.startsWith('data:image/webp')
-                    ? 'webp'
-                    : 'png',
+                type: image.type,
               }),
             ],
           }),

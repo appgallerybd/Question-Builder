@@ -1,0 +1,10 @@
+{
+  "name": "Multilingual Question Paper Generator",
+  "short_name": "Question Builder",
+  "description": "Create multilingual Bengali, English, Arabic and Urdu question papers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": []
+}

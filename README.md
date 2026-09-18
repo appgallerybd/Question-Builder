@@ -51,8 +51,17 @@ Implemented:
 - Responsive mobile-friendly question editor
 - Demo questions are immediately editable
 
-## Next
-Phase 6 — Advanced Question Editor: all question types, sub-questions, tags, chapter/topic, answer/explanation, image/table/equation blocks.
+## Phase 6 — Advanced Question Editor Foundation
+
+Implemented:
+- Chapter and Topic fields
+- Tag creation/removal
+- Question sorting by newest, oldest and marks
+- Expanded metadata editing
+- Existing CRUD and validation retained
+
+Next
+Phase 7 — Question Paper Builder and multi-step exam workflow.
 
 Run:
 

@@ -9,4 +9,4 @@ export interface Question { id: string; language: Language; direction: Direction
 export interface PaperSection { id:string; title:string; questionIds:string[]; marksPerQuestion?:number; }
 export interface QuestionPaper { id: string; name: string; institutionName: string; examName: string; className: string; subject: string; academicYear: string; examDate?: string; time?: string; fullMarks: number; teacherName?: string; instructions?: string; questionIds: string[]; sections?: PaperSection[]; template: string; status: 'draft'|'final'|'archived'; createdAt: string; updatedAt: string; }
 export interface Subject { id: string; name: string; createdAt: string; }
-export interface ExportSettings { paperSize: 'A4'|'A5'|'Letter'; orientation: 'portrait'|'landscape'; margin: 'narrow'|'normal'|'wide'|'custom'; quality: 'standard'|'high'; }
+export interface ExportSettings { paperSize: 'A4'|'A5'|'Letter'; orientation: 'portrait'|'landscape'; margin: 'narrow'|'normal'|'wide'|'custom'; customMargin?: number; quality: 'standard'|'high'; }

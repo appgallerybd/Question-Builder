@@ -279,7 +279,7 @@ function QuestionEditor({
           </button>
         </div>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="px-5 py-5"><div className="mb-5 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3 text-xs font-medium text-slate-500 dark:border-slate-800"><span className="border-b-2 border-slate-900 pb-3 text-slate-900 dark:border-white dark:text-white">Content</span><span className="pb-3">Structure</span><span className="pb-3">Media & Table</span></div><div className="grid gap-4 sm:grid-cols-2">
           <label className="text-sm">
             Language
             <select
@@ -288,7 +288,7 @@ function QuestionEditor({
                 const l = e.target.value as Language
                 set({ language: l, direction: l === 'ar' || l === 'ur' ? 'rtl' : 'ltr' })
               }}
-              className="mt-1 min-h-11 w-full rounded-xl border p-2 dark:bg-slate-950"
+              className="mt-1 min-h-10 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-300 dark:border-slate-700 dark:bg-slate-950"
             >
               <option value="bn">বাংলা</option>
               <option value="en">English</option>
@@ -302,7 +302,7 @@ function QuestionEditor({
             <select
               value={q.questionType}
               onChange={(e) => set({ questionType: e.target.value as QuestionType })}
-              className="mt-1 min-h-11 w-full rounded-xl border p-2 dark:bg-slate-950"
+              className="mt-1 min-h-10 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-300 dark:border-slate-700 dark:bg-slate-950"
             >
               {Object.entries(typeLabels).map(([k, v]) => (
                 <option key={k} value={k}>
@@ -329,7 +329,7 @@ function QuestionEditor({
               dir={q.direction}
               onChange={(e) => set({ questionText: e.target.value })}
               rows={5}
-              className="mt-1 w-full rounded-xl border p-3 dark:bg-slate-950"
+              className="mt-1 min-h-32 w-full resize-y rounded-lg border border-slate-200 bg-white p-3 text-sm leading-7 outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-300 dark:border-slate-700 dark:bg-slate-950"
               autoFocus
             />
           </label>
@@ -390,7 +390,7 @@ function QuestionEditor({
           </div>
         </div>
 
-        <div className="mt-5 space-y-4">
+        <div className="border-t border-slate-200 px-5 py-5 dark:border-slate-800"><div className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Structure & Media</div><div className="space-y-4">
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
@@ -584,7 +584,7 @@ function QuestionEditor({
         </div>
 
         {(q.questionType === 'mcq' || q.questionType === 'multiple-select') && (
-          <div className="mt-5 space-y-2">
+          <div className="border-t border-slate-200 px-5 py-5 dark:border-slate-800"><p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Answer Options</p><div className="space-y-2">
             <p className="text-sm font-medium">Options</p>
             {(q.options ?? []).map((o, i) => (
               <input
@@ -612,12 +612,12 @@ function QuestionEditor({
         )}
 
         <div className="mt-6 flex justify-end gap-2">
-          <button onClick={onCancel} className="min-h-11 rounded-xl border px-4">
+          <button onClick={onCancel} className="min-h-10 rounded-lg border border-slate-300 bg-white px-4 text-sm font-medium dark:border-slate-700 dark:bg-slate-900">
             Cancel
           </button>
           <button
             onClick={() => onSave(q)}
-            className="min-h-11 rounded-xl bg-slate-950 px-5 text-sm font-medium text-white dark:bg-white dark:text-slate-950"
+            className="min-h-10 rounded-lg bg-slate-900 px-5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-white dark:text-slate-950"
           >
             Save
           </button>

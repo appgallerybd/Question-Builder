@@ -1,0 +1,9 @@
+import { useState } from 'react'
+import type { Question, QuestionPaper } from '../types'
+import { exportAnswerKeyDocx, exportAnswerKeyPdf } from '../exporters/answerKey'
+export function AnswerKey({paper,questions,onClose}:{paper:QuestionPaper;questions:Question[];onClose:()=>void}){
+ const mcqs=paper.questionIds.map(id=>questions.find(q=>q.id===id)).filter((q):q is Question=>Boolean(q&&q.correctAnswer!==undefined))
+ const [busy,setBusy]=useState(false)
+ const run=async(kind:'pdf'|'docx')=>{setBusy(true);try{kind==='pdf'?await exportAnswerKeyPdf(paper,questions,paper.name+' - Answer Key'):await exportAnswerKeyDocx(paper,questions,paper.name+' - Answer Key')}finally{setBusy(false)}}
+ return <div className="fixed inset-0 z-[70] grid place-items-center bg-black/50 p-4"><div className="max-h-[90vh] w-full max-w-xl overflow-auto rounded-2xl bg-white p-5 dark:bg-slate-900"><div className="flex items-center justify-between"><h2 className="text-lg font-bold">Answer Key</h2><button onClick={onClose} className="min-h-10 rounded-lg border px-3">Close</button></div>{mcqs.length===0?<p className="py-10 text-center text-sm text-slate-500">No questions with correct answers.</p>:<div className="mt-5 space-y-2">{mcqs.map((q,i)=><div key={q.id} className="flex justify-between rounded-xl border p-3"><span>{i+1}. {q.questionText}</span><strong>{Array.isArray(q.correctAnswer)?q.correctAnswer.join(', '):q.correctAnswer}</strong></div>)}</div>}<div className="mt-5 flex flex-wrap gap-2"><button disabled={busy||mcqs.length===0} onClick={()=>run('pdf')} className="min-h-11 rounded-xl bg-slate-950 px-4 text-white disabled:opacity-50">Answer Key PDF</button><button disabled={busy||mcqs.length===0} onClick={()=>run('docx')} className="min-h-11 rounded-xl border px-4 disabled:opacity-50">Answer Key DOCX</button><button onClick={()=>window.print()} className="min-h-11 rounded-xl border px-4">Print</button></div></div></div>
+}

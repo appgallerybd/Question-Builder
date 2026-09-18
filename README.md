@@ -71,8 +71,19 @@ Implemented:
 - Active draft snapshot persisted in localStorage
 - Existing multi-step builder workflow retained
 
+## Phase 17 — Saved Paper & Draft Workflow
+
+Implemented:
+- Saved Paper edit workflow wired into the application
+- Existing paper updates preserve its ID instead of creating duplicates
+- Saved Paper Answer Key action wired to the Answer Key UI
+- Duplicate papers receive a fresh ID and draft status
+- Active draft snapshot persistence
+- Versioned LocalStorage envelope validation hardened
+- Existing multilingual builder and export workflow retained
+
 ## Next
-Phase 18 — Final responsive QA, storage recovery UX, DOCX rich-content fidelity, and production hardening.
+Phase 18 — Final responsive QA, storage recovery UX, rich DOCX fidelity, security checks, and production hardening.
 
 Run:
 

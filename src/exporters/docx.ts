@@ -104,9 +104,13 @@ export async function exportPaperDocx(
                   : 'left',
             children: [
               new ImageRun({
-                type: media.dataUrl.startsWith('data:image/jpeg') ? 'jpg' : media.dataUrl.startsWith('data:image/webp') ? 'webp' : 'png',
                 data: dataUrlBytes(media.dataUrl),
                 transformation: { width: 500, height: 300 },
+                type: media.dataUrl.startsWith('data:image/jpeg')
+                  ? 'jpg'
+                  : media.dataUrl.startsWith('data:image/webp')
+                    ? 'webp'
+                    : 'png',
               }),
             ],
           }),

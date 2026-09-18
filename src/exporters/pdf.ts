@@ -7,7 +7,7 @@ export async function exportPaperPdf(element:HTMLElement,settings:ExportSettings
  const orientation=settings.orientation==='landscape'?'landscape':'portrait'
  const pdf=new jsPDF({orientation,unit:'mm',format:settings.paperSize})
  const pageW=pdf.internal.pageSize.getWidth(),pageH=pdf.internal.pageSize.getHeight()
- const margin=settings.margin==='custom'?12:margins[settings.margin]
+ const margin=settings.margin==='custom'?Math.max(0,Math.min(40,settings.customMargin??12)):margins[settings.margin]
  const usableW=pageW-margin*2,usableH=pageH-margin*2
  const pxPerMm=canvas.width/usableW
  const sliceHeight=Math.max(1,Math.floor(usableH*pxPerMm))

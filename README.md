@@ -35,8 +35,24 @@ Implemented:
 - Dashboard counters now read from persisted data
 - UUID-based entity ID utility
 
+## Phase 5 — Question Bank CRUD
+
+Implemented:
+- Full Question Bank list UI
+- Add, edit, duplicate and delete questions
+- Bulk selection and bulk delete
+- Search by question text and subject
+- Filter by language, question type and difficulty
+- Per-question RTL/LTR direction
+- MCQ option editor
+- Marks and metadata editor
+- Zod validation before persistence
+- LocalStorage/Zustand integration
+- Responsive mobile-friendly question editor
+- Demo questions are immediately editable
+
 ## Next
-Phase 5 — Full Question Bank UI and CRUD workflow.
+Phase 6 — Advanced Question Editor: all question types, sub-questions, tags, chapter/topic, answer/explanation, image/table/equation blocks.
 
 Run:
 

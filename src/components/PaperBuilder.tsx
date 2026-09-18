@@ -8,17 +8,17 @@ import { exportPaperDocx, exportPaperPdf } from '../exporters'
 
 const steps=['Exam Information','Questions','Arrangement','Design','Preview'] as const
 const empty=():QuestionPaper=>{const now=new Date().toISOString();return{id:createId('paper'),name:'Untitled Paper',institutionName:'',examName:'',className:'',subject:'',academicYear:'',examDate:'',time:'',fullMarks:100,teacherName:'',instructions:'',questionIds:[],sections:[],template:'classic',status:'draft',createdAt:now,updatedAt:now}}
-export function PaperBuilder({onDone}:{onDone:()=>void}){
+export function PaperBuilder({onDone,initialPaper}:{onDone:()=>void;initialPaper?:QuestionPaper}){
  const questions=useAppStore(s=>s.questions),addPaper=useAppStore(s=>s.addPaper)
- const [step,setStep]=useState(0),[paper,setPaper]=useState<QuestionPaper>(empty())
- const [selected,setSelected]=useState<string[]>([]),[activeSection,setActiveSection]=useState<string>(''),[exporting,setExporting]=useState(false),[exportError,setExportError]=useState('')
+ const [step,setStep]=useState(0),[paper,setPaper]=useState<QuestionPaper>(initialPaper??empty())
+ const [selected,setSelected]=useState<string[]>(initialPaper?.questionIds??[]),[activeSection,setActiveSection]=useState<string>(''),[exporting,setExporting]=useState(false),[exportError,setExportError]=useState('')
  const selectedQuestions=useMemo(()=>selected.map(id=>questions.find(q=>q.id===id)).filter(Boolean),[selected,questions])
  const total=selectedQuestions.reduce((sum,q)=>sum+(q?.marks??0),0)
  const validation=paper.institutionName.trim()&&paper.examName.trim()&&paper.subject.trim()&&paper.className.trim()&&paper.fullMarks>0&&selected.length>0
  const patch=(x:Partial<QuestionPaper>)=>setPaper(p=>({...p,...x,updatedAt:new Date().toISOString()}))
  const toggle=(id:string)=>setSelected(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id])
  const sections=paper.sections??[]
- const save=()=>{patch({questionIds:selected});addPaper({...paper,questionIds:selected,sections,updatedAt:new Date().toISOString()});onDone()}
+ const save=()=>{const saved={...paper,questionIds:selected,sections,status:'draft' as const,updatedAt:new Date().toISOString()};addPaper(saved);localStorage.setItem('qpg_active_draft',JSON.stringify(saved));onDone()}
  const addSection=()=>{const id=createId('section');setActiveSection(id);patch({sections:[...sections,{id,title:`Section ${String.fromCharCode(65+sections.length)}`,questionIds:[]} ]})}
  const updateSection=(id:string,patchSection:Partial<NonNullable<QuestionPaper['sections']>[number]>)=>patch({sections:sections.map(s=>s.id===id?{...s,...patchSection}:s)})
  const assignToSection=(id:string,qid:string)=>{const next=sections.map(s=>s.id===id?{...s,questionIds:s.questionIds.includes(qid)?s.questionIds.filter(x=>x!==qid):[...s.questionIds,qid]}:s);patch({sections:next})}

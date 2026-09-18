@@ -106,8 +106,35 @@ Implemented:
 - Reviewed application state wiring for duplicate declarations
 - Preserved RTL/LTR, multilingual and export paths
 
-## Next
-Phase 20 — Final production polish, release documentation, deployment checks, and final feature audit.
+## Phase 20 — Final Production Release
+
+Implemented:
+- Production runtime Error Boundary with safe reload recovery
+- PWA manifest and installable-app metadata foundation
+- Automated GitHub Actions CI for `npm ci`, lint and production build
+- Final project structure and deployment documentation foundation
+- Production-safe LocalStorage and export error paths retained
+- Responsive, multilingual and RTL/LTR architecture retained
+
+### Release commands
+```bash
+npm ci
+npm run lint
+npm run build
+npm run dev
+```
+
+### Deployment
+The project is a Vite SPA and can be deployed to Vercel, Netlify, Cloudflare Pages or any static host that supports SPA fallback to `index.html`.
+
+### Important runtime notes
+- PDF generation currently runs client-side with `html2canvas` + `jsPDF`.
+- DOCX generation currently runs client-side with `docx`.
+- Question and paper data are stored locally in the browser.
+- Future multi-user/cloud persistence can replace the repository layer without rewriting UI components.
+
+## Project Status
+Phase 20 complete. The repository now contains the production-release foundation for the Multilingual Question Paper Generator. Before a public launch, run the CI pipeline and perform browser-level manual checks for the target export/browser matrix.
 
 Run:
 

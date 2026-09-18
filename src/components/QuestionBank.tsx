@@ -109,37 +109,37 @@ export function QuestionBank() {
   }
 
   return (
-    <section className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <section className="space-y-3">
+      <div className="flex flex-col gap-3 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between dark:border-slate-800">
         <div>
-          <h2 className="text-xl font-bold">{t('questionBank')}</h2>
+          <h2 className="text-lg font-semibold">{t('questionBank')}</h2>
           <p className="text-sm text-slate-500">
             {filtered.length} / {questions.length}
           </p>
         </div>
         <button
           onClick={() => setEditing(empty(language))}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-medium text-white dark:bg-white dark:text-slate-950"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-white dark:text-slate-950"
         >
           <Plus size={18} />
           {t('addQuestion')}
         </button>
       </div>
 
-      <div className="grid gap-2 md:grid-cols-[1fr_160px_180px_150px]">
+      <div className="rounded-xl border border-slate-200 bg-white p-2 dark:border-slate-800 dark:bg-slate-900"><div className="grid gap-2 md:grid-cols-[1fr_160px_180px_150px] lg:grid-cols-[1fr_150px_170px_130px_150px]">
         <label className="relative">
           <Search className="absolute left-3 top-3.5 text-slate-400" size={17} />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('search')}
-            className="min-h-11 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm outline-none focus:ring-2 dark:border-slate-800 dark:bg-slate-900"
+            className="min-h-10 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-3 text-sm outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-300 dark:border-slate-700 dark:bg-slate-950"
           />
         </label>
         <select
           value={lang}
           onChange={(e) => setLang(e.target.value as Language | 'all')}
-          className="min-h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm dark:border-slate-800 dark:bg-slate-900"
+          className="min-h-10 rounded-lg border border-slate-200 bg-white px-3 text-sm dark:border-slate-700 dark:bg-slate-950"
         >
           <option value="all">All languages</option>
           {Object.entries(langLabels).map(([k, v]) => (
@@ -151,7 +151,7 @@ export function QuestionBank() {
         <select
           value={type}
           onChange={(e) => setType(e.target.value as QuestionType | 'all')}
-          className="min-h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm dark:border-slate-800 dark:bg-slate-900"
+          className="min-h-10 rounded-lg border border-slate-200 bg-white px-3 text-sm dark:border-slate-700 dark:bg-slate-950"
         >
           <option value="all">All types</option>
           {Object.entries(typeLabels).map(([k, v]) => (
@@ -163,7 +163,7 @@ export function QuestionBank() {
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as typeof sort)}
-          className="min-h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm dark:border-slate-800 dark:bg-slate-900"
+          className="min-h-10 rounded-lg border border-slate-200 bg-white px-3 text-sm dark:border-slate-700 dark:bg-slate-950"
         >
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
@@ -172,7 +172,7 @@ export function QuestionBank() {
         <select
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value as Question['difficulty'] | 'all')}
-          className="min-h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm dark:border-slate-800 dark:bg-slate-900"
+          className="min-h-10 rounded-lg border border-slate-200 bg-white px-3 text-sm dark:border-slate-700 dark:bg-slate-950"
         >
           <option value="all">All difficulty</option>
           <option value="easy">Easy</option>
@@ -191,9 +191,9 @@ export function QuestionBank() {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         {filtered.map((q) => (
-          <div key={q.id} className="border-b border-slate-100 p-4 last:border-0 dark:border-slate-800">
+          <div key={q.id} className="border-b border-slate-100 px-4 py-3 last:border-0 hover:bg-slate-50/70 dark:border-slate-800 dark:hover:bg-slate-950/40">
             <div className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -206,10 +206,10 @@ export function QuestionBank() {
                 className="mt-1 size-4"
               />
               <div className="min-w-0 flex-1">
-                <div className="mb-2 flex flex-wrap gap-2 text-[11px]">
-                  <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-800">{langLabels[q.language]}</span>
-                  <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-800">{typeLabels[q.questionType]}</span>
-                  <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-800">{q.marks} marks</span>
+                <div className="mb-1 flex flex-wrap gap-1 text-[10px]">
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 dark:bg-slate-800">{langLabels[q.language]}</span>
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 dark:bg-slate-800">{typeLabels[q.questionType]}</span>
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 dark:bg-slate-800">{q.marks} marks</span>
                 </div>
                 <p dir={q.direction} lang={q.language} className="bidi-isolate text-sm leading-6">
                   {q.questionText}
@@ -219,13 +219,13 @@ export function QuestionBank() {
                 </p>
               </div>
               <div className="flex gap-1">
-                <button aria-label="Edit" onClick={() => setEditing(q)} className="grid size-10 place-items-center rounded-lg">
+                <button aria-label="Edit" onClick={() => setEditing(q)} className="grid size-9 place-items-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
                   <Edit3 size={16} />
                 </button>
-                <button aria-label="Duplicate" onClick={() => duplicate(q)} className="grid size-10 place-items-center rounded-lg">
+                <button aria-label="Duplicate" onClick={() => duplicate(q)} className="grid size-9 place-items-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
                   <Copy size={16} />
                 </button>
-                <button aria-label="Delete" onClick={() => del(q.id)} className="grid size-10 place-items-center rounded-lg text-red-600">
+                <button aria-label="Delete" onClick={() => del(q.id)} className="grid size-9 place-items-center rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30">
                   <Trash2 size={16} />
                 </button>
               </div>
@@ -270,9 +270,9 @@ function QuestionEditor({
   }
 
   return (
-    <div className="fixed inset-0 z-[60] grid place-items-center bg-slate-950/50 p-3">
-      <div className="max-h-[94vh] w-full max-w-3xl overflow-auto rounded-2xl bg-white p-5 shadow-2xl dark:bg-slate-900">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-[60] grid place-items-center bg-slate-950/50 p-3 backdrop-blur-[2px]">
+      <div className="max-h-[94vh] w-full max-w-4xl overflow-auto rounded-xl border border-slate-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4 dark:border-slate-800 dark:bg-slate-900">
           <h3 className="font-semibold">{value.questionText ? 'Edit Question' : 'Add Question'}</h3>
           <button onClick={onCancel} className="grid size-10 place-items-center rounded-xl">
             <X size={20} />
@@ -493,7 +493,7 @@ function QuestionEditor({
               <button
                 type="button"
                 onClick={() => set({ subQuestions: (q.subQuestions ?? []).filter((item) => item.id !== s.id) })}
-                className="grid size-10 place-items-center rounded-lg text-red-600"
+                className="grid size-9 place-items-center rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30"
               >
                 <Trash2 size={15} />
               </button>

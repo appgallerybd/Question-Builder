@@ -11,7 +11,7 @@ button{-webkit-tap-highlight-color:transparent}
 [lang="ar"]{font-family:"Noto Naskh Arabic","Noto Sans Arabic",Arial,sans-serif}
 [lang="ur"]{font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic",Arial,sans-serif}
 .bidi-isolate{unicode-bidi:isolate}
-@media print{nav,aside,header{display:none!important}body{background:white}}
+@media print{nav,aside,body>header{display:none!important}body{background:white}.qpg-preview-stage{padding:0!important;background:white!important}.qpg-paper{box-shadow:none!important;margin:0!important}}
 
 
 .qpg-section{break-inside:avoid;margin-bottom:7mm}.qpg-section-title{font-size:12pt;margin:0 0 4mm;border-bottom:1px solid #555;padding-bottom:1.5mm}.qpg-subquestions{margin:2mm 0 0 7mm;display:grid;gap:2mm}.qpg-subquestion{display:grid;grid-template-columns:auto 1fr auto;gap:2mm;break-inside:avoid}.qpg-media{margin:4mm 0;break-inside:avoid}.qpg-align-left{text-align:left}.qpg-align-center{text-align:center}.qpg-align-right{text-align:right}.qpg-media img{max-width:100%;height:auto;display:inline-block}.qpg-table-wrap{overflow-x:auto;margin:4mm 0;break-inside:avoid}.qpg-table{width:100%;border-collapse:collapse}.qpg-table td{border:1px solid #333;padding:2mm;vertical-align:top}
@@ -61,3 +61,5 @@ button,a,input,select,textarea{touch-action:manipulation}
   .qpg-meta span{padding:0 2.5mm}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+@page{size:A4 portrait;margin:0}

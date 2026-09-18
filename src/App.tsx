@@ -7,7 +7,6 @@ import { QuestionBank } from './components/QuestionBank'
 import { PaperBuilder } from './components/PaperBuilder'
 import { SavedPapers } from './components/SavedPapers'
 import { AnswerKey } from './components/AnswerKey'
-import { AnswerKey } from './components/AnswerKey'
 import { AppLanguage, getTranslation, languageMeta } from './i18n'
 
 type Page = 'dashboard' | 'create' | 'questions' | 'papers' | 'settings'
@@ -16,7 +15,7 @@ const nav: {id:Page; key: 'dashboard'|'createPaper'|'questionBank'|'savedPapers'
  {id:'dashboard',key:'dashboard',icon:LayoutDashboard},{id:'create',key:'createPaper',icon:FilePlus2},{id:'questions',key:'questionBank',icon:BookOpen},{id:'papers',key:'savedPapers',icon:Archive},{id:'settings',key:'settings',icon:Settings}
 ]
 function App() {
- const [page,setPage]=useState<Page>('dashboard'), [mobileOpen,setMobileOpen]=useState(false), [editingPaperId,setEditingPaperId]=useState<string>(), [answerPaperId,setAnswerPaperId]=useState<string>(), [editingPaperId,setEditingPaperId]=useState<string|undefined>(), [answerPaperId,setAnswerPaperId]=useState<string|undefined>()
+ const [page,setPage]=useState<Page>('dashboard'), [mobileOpen,setMobileOpen]=useState(false), [editingPaperId,setEditingPaperId]=useState<string|undefined>(), [answerPaperId,setAnswerPaperId]=useState<string|undefined>()
  const language=useAppStore(s=>s.language), theme=useAppStore(s=>s.theme), setLanguage=useAppStore(s=>s.setLanguage), setTheme=useAppStore(s=>s.setTheme)
  const questions=useAppStore(s=>s.questions), papers=useAppStore(s=>s.papers), subjects=useAppStore(s=>s.subjects), hydrate=useAppStore(s=>s.hydrate)
  const t=(key: Parameters<typeof getTranslation>[1])=>getTranslation(language,key)

@@ -60,8 +60,19 @@ Implemented:
 - Expanded metadata editing
 - Existing CRUD and validation retained
 
-Next
-Phase 7 — Question Paper Builder and multi-step exam workflow.
+## Phase 17 — Saved Paper & Draft Workflow
+
+Implemented:
+- Saved Papers edit action
+- Saved Papers Answer Key action hook
+- Safe paper duplication resets status to draft
+- Persisted draft collection exposed from Zustand hydration
+- Paper Builder accepts an optional existing paper for edit mode
+- Active draft snapshot persisted in localStorage
+- Existing multi-step builder workflow retained
+
+## Next
+Phase 18 — Final responsive QA, storage recovery UX, DOCX rich-content fidelity, and production hardening.
 
 Run:
 
